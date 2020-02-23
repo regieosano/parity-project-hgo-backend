@@ -18,11 +18,12 @@ router.post("/login", async (req, res) => {
     if (searchMember) {
       res.status(200).json({
         isSuccessfull: true,
-        data: searchMember
+        member: searchMember,
+        data: members
       });
     } else {
       return res.status(400).json({
-        isSuccessfull: true,
+        isSuccessfull: false,
         message: "Invalid Credentials!"
       });
     }

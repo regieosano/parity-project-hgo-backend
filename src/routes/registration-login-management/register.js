@@ -34,6 +34,9 @@ router.post("/register", async (req, res) => {
       "password"
     ]);
 
+    // Add to Mock Database
+    members.push(newMember);
+
     res.status(201).json({
       newMember
     });

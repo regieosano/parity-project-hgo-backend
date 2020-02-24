@@ -11,6 +11,7 @@ router.post("/login", async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
+    // Find if the member exist
     const searchMember = members.find(m => {
       return m.email === email && m.password === password;
     });

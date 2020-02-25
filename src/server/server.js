@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 
 import loginRegisterRoute from "../routes/registration-login-management/login-register";
-import registerRoute from "../routes/registration-login-management/register";
 
 module.exports = function(app) {
   // CORS middleware definition
@@ -18,7 +17,6 @@ module.exports = function(app) {
 
   // Routes definition
   app.use("/parity/hgo/api", loginRegisterRoute);
-  // app.use("/parity/hgo/api", registerRoute);
 
   app.use(function(req, res) {
     res.statusCode = 404;

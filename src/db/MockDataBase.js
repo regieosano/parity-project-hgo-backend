@@ -1,6 +1,5 @@
 class MockDataBase {
   constructor() {
-    this.newMember = {};
     this.hgoMembers = [
       {
         accountID: "Phillips",
@@ -56,13 +55,7 @@ class MockDataBase {
   }
 
   getHGOMembers() {
-    this.hgoMembers = [...this.hgoMembers, this.newMember];
     return this.hgoMembers;
-  }
-
-  setHGOMembers(newMember) {
-    this.newMember = newMember;
-    this.hgoMembers = [...this.hgoMembers, this.newMember];
   }
 }
 

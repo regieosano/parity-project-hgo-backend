@@ -1,18 +1,22 @@
 import express from "express";
 
-import db from "../../db/db";
+import MockDataBase from "../../db/MockDataBase";
 
 const router = express.Router();
 
-const members = db();
+const mockDB = new MockDataBase();
+
+// const hgoMembers = mockDB.getHGOMembers();
 
 router.post("/login", async (req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
 
+    const hgoMembers = mockDB.getHGOMembers();
+
     // Find if the member exist
-    const searchMember = members.find(m => {
+    const searchMember = hgoMembers.find(m => {
       return m.email === email && m.password === password;
     });
 
@@ -20,7 +24,7 @@ router.post("/login", async (req, res) => {
       res.status(200).json({
         isSuccessfull: true,
         member: searchMember,
-        data: members
+        data: hgoMembers
       });
     } else {
       return res.status(400).json({

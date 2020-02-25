@@ -1,18 +1,20 @@
 import express from "express";
 import _ from "lodash";
 
-import db from "../../db/db";
+import MockDatabase from "../../db/MockDataBase";
 
 const router = express.Router();
 
-const members = db();
+const mockDB = new MockDatabase();
+
+const hgoMembers = mockDB.getHGOMembers();
 
 router.post("/register", async (req, res) => {
   try {
     const email = req.body.email;
 
     // Check if the member exist already
-    const isMemberRegisteredAlready = members.find(m => {
+    const isMemberRegisteredAlready = hgoMembers.find(m => {
       return m.email === email;
     });
 
@@ -34,8 +36,8 @@ router.post("/register", async (req, res) => {
       "password"
     ]);
 
-    // Add to Mock Database
-    members.push(newMember);
+    // Add New Member to Mock Database
+    mockDB.setHGOMembers(newMember);
 
     res.status(201).json({
       newMember
